@@ -54,6 +54,9 @@ pipeline {
 		}
 		failure {
 			echo 'El build ha fallado'
+			mail to:'j.aguilartablada@ibermatica.com',
+				subject: 'pipeline',
+				body: 'Algo ha fallado en la ejecución del pipeline de Jenkins'
 		}
 		changed {
 			echo 'Algo ha cambiado'
