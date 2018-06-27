@@ -4,30 +4,38 @@ pipeline {
 		DB_ENGINE= 'sqlite'
 	}
 	stages {
-		stage('inicio') {
+		stage('Inicio') {
 			steps {
 				echo 'Hola mundo'
 			}
 		}
-		stage('variables de entorno') {
+		stage('¿Dónde está maven?') {
+			steps {
+				sh 'echo "${MAVEN_HOME}"' 
+			}
+		}
+		stage('Variables de entorno') {
 			steps {
 				sh 'printenv'
 				sh 'echo "${PATH}"' 
 			}
 		}
-		stage('pruebas') {
+		stage('Pruebas') {
 			steps {
+				echo 'Ejecutando pruebas unitarias del proyecto'
 				sh 'mvn test'
+				junit(allowEmptyResults: true, testResults:'**/target/surefire-reports/*.xml')
 			}
 		}
-		stage('build') {
+		stage('Empaquetado') {
 			steps {
+				echo 'Empaquetando la aplicación'
 				sh 'mvn package'
 			}
 		}
-		stage('ejecucion') {
+		stage('Ejecución') {
 			steps {
-				echo 'ejecutando el paquete'
+				echo 'Ejecutando el paquete'
 			}
 		}
 	}
