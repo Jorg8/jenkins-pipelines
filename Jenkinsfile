@@ -3,6 +3,9 @@ pipeline {
 	environment {
 		DB_ENGINE= 'sqlite'
 	}
+	tools {
+		maven 'maven'
+	}
 	stages {
 		stage('Inicio') {
 			steps {
@@ -36,6 +39,7 @@ pipeline {
 		stage('Ejecución') {
 			steps {
 				echo 'Ejecutando el paquete'
+				sh 'mvn exec:java -Dexec.mainClass="com.pipeline.test.App"'
 			}
 		}
 	}
