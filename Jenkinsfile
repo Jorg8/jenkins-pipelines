@@ -45,4 +45,18 @@ pipeline {
 			}
 		}
 	}
+	post {
+		always {
+			echo 'El buid ha terminado'
+		}
+		success {
+			echo 'Build correcto'
+		}
+		failure {
+			echo 'El build ha fallado'
+		}
+		changed {
+			echo 'Algo ha cambiado'
+		}
+	}
 }
