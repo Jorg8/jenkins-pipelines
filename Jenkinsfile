@@ -20,7 +20,8 @@ pipeline {
 		stage('Variables de entorno') {
 			steps {
 				sh 'printenv'
-				sh 'echo "${PATH}"' 
+				sh 'echo "${PATH}"'
+				input '¿El ambiente es correcto?'
 			}
 		}
 		stage('Pruebas') {
