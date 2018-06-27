@@ -4,7 +4,7 @@ pipeline {
 		DB_ENGINE= 'sqlite'
 	}
 	tools {
-		java 'java'
+		jdk 'java'
 		maven 'maven'
 	}
 	stages {
