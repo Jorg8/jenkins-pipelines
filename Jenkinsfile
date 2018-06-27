@@ -1,24 +1,33 @@
 pipeline {
 	agent any
-	stages{
-		stage('inicio'){
-			steps{
+	environment {
+		DB_ENGINE= 'sqlite'
+	}
+	stages {
+		stage('inicio') {
+			steps {
 				echo 'Hola mundo'
 			}
 		}
-		stage('pruebas'){
-			steps{
+		stage('variables de entorno') {
+			steps {
+				sh 'printenv'
+				sh 'echo "${PATH}"' 
+			}
+		}
+		stage('pruebas') {
+			steps {
 				sh 'mvn test'
 			}
 		}
-		stage('build'){
-			steps{
-				echo 'construyendo el paquete'
+		stage('build') {
+			steps {
+				sh 'mvn package'
 			}
 		}
-		stage('deploy'){
-			steps{
-				echo 'desplegando el paquete'
+		stage('ejecucion') {
+			steps {
+				echo 'ejecutando el paquete'
 			}
 		}
 	}
